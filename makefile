@@ -2,11 +2,18 @@ all: compile run
 
 run:
 	./factorial 20
+	./fib 93
 
-compile: factorial
+compile: factorial fib
+
+fib: fib.o comp.o
+	g++ -std=c++17 fib.o comp.o -o fib
 
 factorial: fact.o comp.o
 	g++ -std=c++17 fact.o comp.o -o factorial
+
+fib.o: fib.cpp
+	g++ -std=c++17 fib.cpp -c 
 
 fact.o: fact.cpp
 	g++ -std=c++17 fact.cpp -c 
